@@ -12,7 +12,10 @@ private:
 
 public:
     RFTransmitter(int cePin, int csnPin, const byte *addr)
-        : radio(cePin, csnPin), address(addr) {}
+        : radio(cePin, csnPin), address(addr)
+    {
+        begin();
+    }
 
     void begin();
 

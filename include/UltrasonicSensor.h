@@ -11,11 +11,13 @@ private:
 
 public:
     UltrasonicSensor(int trig, int echo)
-        : trigPin(trig), echoPin(echo) {}
+        : trigPin(trig), echoPin(echo) {
+            begin();
+        }
 
     void begin();
 
-    long getDistance();
+    float getDistance();
 };
 
 #endif

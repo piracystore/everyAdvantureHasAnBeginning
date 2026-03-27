@@ -20,35 +20,26 @@ Adafruit_SSD1306 OLEDDraw::Setup()
     return display;
 }
 
-void OLEDDraw::drawCurve()
+
+void OLEDDraw::updateHistory(float newValue)
 {
-    int history[HistoryLength] = {0};
+    for (int i = 0; i < HistoryLength - 1; i++)
+    {
+        history[i] = history[i + 1];
+    }
+    history[HistoryLength - 1] = newValue;
+}
+
+void OLEDDraw::drawGraph()
+{
     display->clearDisplay();
-    for (int i = 0; i < HistoryLength; i++)
+    for (int i = 0; i < HistoryLength - 1; i++)
     {
         int x1 = map(i, 0, HistoryLength - 1, 0, ScreenWidth);
         int y1 = map(history[i], 0, 100, ScreenHeight, 0);
-        int x2 = map(i, 0, HistoryLength - 1, 0, ScreenWidth);
+        int x2 = map(i + 1, 0, HistoryLength - 1, 0, ScreenWidth);
         int y2 = map(history[i + 1], 0, 100, ScreenHeight, 0);
         display->drawLine(x1, y1, x2, y2, SSD1306_WHITE);
     }
     display->display();
 }
-
-
-// void loop()
-// {
-//     static int phase = 0;
-//     int value = sin(phase * 0.1) * 30 + 32;
-//     phase++;
-
-//     for (int i = 0; i < HISTORY_LENGTH - 1; i++)
-//     {
-//         history[i] = history[i + 1];
-//     }
-//     history[HISTORY_LENGTH - 1] = value;
-
-//     drawCurve();
-
-//     delay(0.00000001);
-// }

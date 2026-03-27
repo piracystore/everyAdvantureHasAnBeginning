@@ -1,4 +1,4 @@
-# include "UltrasonicSensor.h"
+#include "UltrasonicSensor.h"
 
 void UltrasonicSensor::begin()
 {
@@ -6,7 +6,7 @@ void UltrasonicSensor::begin()
     pinMode(echoPin, INPUT);
 }
 
-long UltrasonicSensor::getDistance()
+float UltrasonicSensor::getDistance()
 {
     digitalWrite(trigPin, LOW);
     delayMicroseconds(2);

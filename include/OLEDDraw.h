@@ -29,7 +29,9 @@ private:
 
     Adafruit_SSD1306 Setup();
 
-    void drawCurve();
+    void updateHistory(float newValue);
+
+    void drawGraph();
 
 
 };
