@@ -14,7 +14,7 @@
 long duration;
 float distance;
 
-const byte *address = (const byte *)"54188";
+const byte address[6] = "54188";
 
 // OLEDDraw oled(SCREEN_WIDTH, SCREEN_HEIGHT, HISTORY_LENGTH, OLED_RESET);
 UltrasonicSensor ultrasonic(TRIG_PIN, ECHO_PIN);
@@ -22,10 +22,9 @@ RFTransmitter rfTransmitter(9, 10, address);
 
 void setup()
 {
-  Serial.begin(9600);
-  Serial.println("Setup start");
-  Serial.print("asdfasdf");
-  Serial.println("Setup end");
+  Serial.begin(9600);  
+  ultrasonic.begin();
+  rfTransmitter.begin();
 }
 
 void loop()
@@ -41,5 +40,5 @@ void loop()
 
   rfTransmitter.sendFloat(distance);
 
-  delay(1000);
+  delay(100);
 }

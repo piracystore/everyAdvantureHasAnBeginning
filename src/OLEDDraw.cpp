@@ -1,23 +1,23 @@
 #include "OLEDDraw.h"
 
-Adafruit_SSD1306 OLEDDraw::Setup()
+void OLEDDraw::Setup()
 {
-    Adafruit_SSD1306 display(ScreenWidth, ScreenHeight, &Wire, OLEDReset);
+    Adafruit_SSD1306 Setingdisplay(ScreenWidth, ScreenHeight, &Wire, OLEDReset);
     Serial.begin(9600);
-    if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C))
+    if (!Setingdisplay.begin(SSD1306_SWITCHCAPVCC, 0x3C))
     {
         Serial.println(F("SSD1306 allocation failed"));
         for (;;)
             ;
     }
-    display.clearDisplay();
-    display.setTextSize(1);
-    display.setTextColor(SSD1306_WHITE);
-    display.setCursor(0, 0);
-    display.println("你好，世界!");
-    display.display();
+    Setingdisplay.clearDisplay();
+    Setingdisplay.setTextSize(1);
+    Setingdisplay.setTextColor(SSD1306_WHITE);
+    Setingdisplay.setCursor(0, 0);
+    Setingdisplay.println("你好，世界!");
+    Setingdisplay.display();
     delay(2000);
-    return display;
+    display = &Setingdisplay;
 }
 
 

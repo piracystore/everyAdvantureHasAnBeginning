@@ -11,9 +11,9 @@ private:
 
 public:
     UltrasonicSensor(int trig, int echo)
-        : trigPin(trig), echoPin(echo) {
-            begin();
-        }
+        : trigPin(trig), echoPin(echo)
+    {
+    }
 
     void begin();
 

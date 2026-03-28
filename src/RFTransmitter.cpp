@@ -12,4 +12,5 @@ void RFTransmitter::begin()
 void RFTransmitter::sendFloat(float value)
 {
     radio.write(&value, sizeof(value));
+    Serial.println("have sent");
 }

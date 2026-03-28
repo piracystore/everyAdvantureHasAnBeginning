@@ -8,13 +8,12 @@ class RFTransmitter
 {
 private:
     RF24 radio;
-    const byte *address;
+    const byte* address;
 
 public:
     RFTransmitter(int cePin, int csnPin, const byte *addr)
         : radio(cePin, csnPin), address(addr)
     {
-        begin();
     }
 
     void begin();

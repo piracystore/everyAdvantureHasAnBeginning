@@ -19,7 +19,6 @@ private:
     : ScreenWidth(width), ScreenHeight(height), HistoryLength(historyLength), OLEDReset(resetPin)
     {
         history = new int[HistoryLength]();
-        display = &Setup();
     }
 
     ~OLEDDraw()
@@ -27,7 +26,7 @@ private:
         delete[] history;
     }
 
-    Adafruit_SSD1306 Setup();
+    void Setup();
 
     void updateHistory(float newValue);
 
