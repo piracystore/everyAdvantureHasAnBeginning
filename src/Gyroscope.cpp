@@ -82,38 +82,21 @@ void Gyroscope::update()
 {
     int16_t ax, ay, az, gx, gy, gz;
     readMPU(ax, ay, az, gx, gy, gz);
+    printOffsets();
+}
 
-    float current_time = millis();
-    float dt = (current_time - prev_time) / 1000.0;
-    prev_time = current_time;
-
-    float gyro_rate = gx / 131.0;
-    pitch += gyro_rate * dt;
-
-    float acc_angle = atan2(ay, az) * 180 / PI;
-    pitch = alpha * pitch + (1 - alpha) * acc_angle;
-
-    error = setPoint - pitch;
-    P = Kp * error;
-    I += Ki * error * dt;
-    D = Kd * (error - lastError) / dt;
-
-    if (I > I_max)
-        I = I_max;
-    else if (I < -I_max)
-        I = -I_max;
-
-    PIDoutput = P + I + D;
-    lastError = error;
-
-    Serial.print("Pitch: ");
-    Serial.print(pitch);
-    Serial.print(" | PID Output: ");
-    Serial.println(PIDoutput);
-    Serial.print("ax: ");
-    Serial.print(ax);
-    Serial.print(" | ay: ");
-    Serial.print(ay);
-    Serial.print(" | az: ");
-    Serial.println(az);
+void Gyroscope::printOffsets()
+{
+    Serial.print("Gyroscope Offsets - ax: ");
+    Serial.print(ax_offset);
+    Serial.print(", ay: ");
+    Serial.print(ay_offset);
+    Serial.print(", az: ");
+    Serial.print(az_offset);
+    Serial.print(", gx: ");
+    Serial.print(gx_offset);
+    Serial.print(", gy: ");
+    Serial.print(gy_offset);
+    Serial.print(", gz: ");
+    Serial.println(gz_offset);
 }
