@@ -13,7 +13,7 @@ private:
     int HistoryLength; 
     int OLEDReset;
     int* history;
-    Adafruit_SSD1306* display;
+    Adafruit_SSD1306 display;
 
     public : OLEDDraw(int width, int height, int historyLength, int resetPin)
     : ScreenWidth(width), ScreenHeight(height), HistoryLength(historyLength), OLEDReset(resetPin)
